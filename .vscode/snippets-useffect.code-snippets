@@ -1,0 +1,8 @@
+{
+    "Print to console": {
+        "scope": "",
+        "prefix": "fx",
+        "body": ["useEffect(() => {", "\t${2}", "}, [${1}]);"],
+        "description": "React useEffect"
+    }
+}

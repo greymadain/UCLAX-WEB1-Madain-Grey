@@ -1,0 +1,18 @@
+{
+    "React Functional Component": {
+        "scope": "",
+        "prefix": "recompb",
+        "body": [
+            "const ${1:Component} = () => {",
+            "\treturn (",
+            "\t\t<div className='${1:Component}'>",
+            "\t\t\t${1:Component} ${2}",
+            "\t\t</div>",
+            "\t);",
+            "}",
+            "",
+            "export default ${1:Component};"
+        ],
+        "description": "React Functional Component"
+    }
+}

@@ -1,0 +1,10 @@
+{
+	"Print to console": {
+		"scope": "",
+		"prefix": "3c",
+		"body": [
+            "/* ${1:Comment H3} ---------------------------*/$0",
+		],
+		"description": "Comment Heading 3"
+	}
+}

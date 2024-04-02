@@ -1,0 +1,82 @@
+{
+    "prettier.jsxSingleQuote": false,
+    "prettier.singleQuote": false,
+    "prettier.semi": true,
+    "prettier.tabWidth": 4,
+    "editor.minimap.enabled": false,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.accessibilitySupport": "off",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.tabSize": 4
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "ms-mssql.mssql"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "javascript.format.semicolons": "insert",
+    "javascript.suggest.autoImports": false,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "typescript.suggest.autoImports": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.startupEditor": "none",
+    "workbench.layoutControl.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.compactFolders": false,
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "debug.onTaskErrors": "debugAnyway",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "phpmd.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "git.suggestSmartCommit": false,
+    "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "always",
+    "gitlens.views.commits.files.layout": "list",
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/.vs": true,
+        "**/bin": true,
+        "**/obj": true
+    },
+    "files.associations": {
+        "*.yml": "yaml",
+        ".env.docker": "dotenv",
+        ".env.stage": "dotenv",
+        ".env.prod": "dotenv",
+        ".env": "dotenv",
+        ".env.do.stage": "dotenv",
+        ".env.port": "dotenv",
+        ".env-cmdrc": "json",
+        ".env.docker-local": "dotenv",
+        ".env.docker-prod": "dotenv",
+        ".env.docker.local": "dotenv",
+        ".env.docker.prod": "dotenv",
+        "*.yaml": "yaml"
+    },
+    "todo-tree.filtering.excludeGlobs": ["**/node_modules"],
+    "todo-tree.general.schemes": ["file", "ssh", "vscode-notebook-cell"],
+    "terminal.integrated.env.osx": {},
+    "console-ninja.showWhatsNew": false,
+    "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+        "live-server": true
+    },
+    "jest.autoRun": {
+        "watch": false
+    },
+    "window.commandCenter": false,
+    "window.zoomLevel": 1,
+    "workbench.editor.empty.hint": "hidden",
+    "scm.showIncomingChanges": "never",
+    "scm.showOutgoingChanges": "never"
+}

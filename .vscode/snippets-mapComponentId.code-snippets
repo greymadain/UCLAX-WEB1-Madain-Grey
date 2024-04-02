@@ -1,0 +1,14 @@
+{
+	"Print to console": {
+		"scope": "",
+		"prefix": "mapComponentId",
+		"body": [
+            "{",
+                "\t${1:item}s.map((${1:item}) => {",
+                    "\t\treturn <${2:Component} key={ ${1:item}.id } ${1:item}={ ${1:item} } />;",
+                "\t})",
+            "}",
+		],
+		"description": "Comment Heading 2"
+	}
+}

@@ -1,0 +1,26 @@
+{
+    "React Functional Component": {
+        "scope": "",
+        "prefix": "recomp",
+        "body": [
+            "import styled from 'styled-components';",
+            "import PropTypes from \"prop-types\";",
+            "",
+            "const ${1:$TM_FILENAME_BASE} = ({${2:prop}}) => {",
+            "\treturn <${1:$TM_FILENAME_BASE}Styled>${1:$TM_FILENAME_BASE}</${1:$TM_FILENAME_BASE}Styled>;",
+            "}",
+            "",
+            "export default ${1:$TM_FILENAME_BASE};",
+            "",
+            "// prop-types",
+            "${1:$TM_FILENAME_BASE}.propTypes = {",
+            "\t${2:prop}: PropTypes.${3:array}",
+            "};",
+            "",
+            "const ${1:$TM_FILENAME_BASE}Styled = styled.div`",
+            "\t${0}",
+            "`;"
+        ],
+        "description": "React Functional Component"
+    }
+}
