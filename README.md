@@ -1,6 +1,6 @@
 # UCLAX Web 1 Project
 
-9:18
+7:24
 This resource is a starter project for students in the UCLAX Web 1 course.
 
 ## Setup Instructions
