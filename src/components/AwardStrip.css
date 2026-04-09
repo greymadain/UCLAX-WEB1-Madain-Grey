@@ -1,0 +1,23 @@
+.award-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--esf-gold-tint);
+  border: 1px solid var(--esf-gold-border);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+}
+
+.award-strip__icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.award-strip__text {
+  font-size: 0.778rem;
+  font-family: var(--font-body);
+  color: var(--esf-gold-text);
+  margin-bottom: 0;
+  line-height: 1.4;
+}

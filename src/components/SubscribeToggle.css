@@ -1,0 +1,47 @@
+.subscribe-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--esf-gray-divider);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 3px;
+}
+
+.subscribe-toggle__btn {
+  padding: 0.5rem var(--space-md);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.889rem;
+  font-weight: 600;
+  color: var(--esf-gray-muted);
+  background: transparent;
+  cursor: pointer;
+  min-height: 44px; /* WCAG 2.5.8 */
+  text-align: center;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+/* Active: green bg + white text (WCAG 1.4.1 — not color alone: weight also changes) */
+.subscribe-toggle__btn--active {
+  background: var(--esf-green-btn);
+  color: #ffffff;
+}
+
+.subscribe-toggle__btn:not(.subscribe-toggle__btn--active):hover {
+  background: rgba(61, 140, 47, 0.1);
+  color: var(--esf-green-dark);
+}
+
+.subscribe-toggle__btn:focus-visible {
+  outline: 3px solid var(--esf-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subscribe-toggle__btn {
+    transition: none;
+  }
+}

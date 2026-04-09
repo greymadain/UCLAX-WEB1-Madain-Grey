@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/global.css';
 import './Order.css';
-import TrustBar from '../components/TrustBar';
+import ImageGallery from '../components/ImageGallery';
+import AwardStrip from '../components/AwardStrip';
+import SubscribeToggle from '../components/SubscribeToggle';
 import PackageSelector, { PACKAGES } from '../components/PackageCard';
 import OrderBump from '../components/OrderBump';
 import CountdownTimer from '../components/CountdownTimer';
@@ -13,28 +15,17 @@ import { getVariant } from '../utils/abTest';
 
 /* ── Validation helpers ──────────────────────────────────────────────────── */
 const validators = {
-  'first-name': (v) => v.trim().length > 0
-    ? null : 'Please enter your first name.',
-  'last-name': (v) => v.trim().length > 0
-    ? null : 'Please enter your last name.',
-  email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
-    ? null : 'Please enter a valid email address (e.g., name@example.com).',
-  tel: (v) => /^\+?[\d\s\-().]{7,}$/.test(v)
-    ? null : 'Please enter a valid phone number.',
-  'address-line1': (v) => v.trim().length > 0
-    ? null : 'Please enter your street address.',
-  city: (v) => v.trim().length > 0
-    ? null : 'Please enter your city.',
-  state: (v) => v.trim().length >= 2
-    ? null : 'Please enter your state.',
-  'postal-code': (v) => /^\d{5}(-\d{4})?$/.test(v)
-    ? null : 'Please enter a valid ZIP code (e.g., 90210).',
-  'card-number': (v) => /^\d[\d\s]{13,18}\d$/.test(v)
-    ? null : 'Please enter a valid 16-digit card number.',
-  'card-expiry': (v) => /^(0[1-9]|1[0-2])\/(\d{2}|\d{4})$/.test(v)
-    ? null : 'Please enter a valid expiry date (MM/YY).',
-  cvv: (v) => /^\d{3,4}$/.test(v)
-    ? null : 'Please enter your 3 or 4 digit security code.',
+  'first-name':   (v) => v.trim().length > 0 ? null : 'Please enter your first name.',
+  'last-name':    (v) => v.trim().length > 0 ? null : 'Please enter your last name.',
+  email:          (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? null : 'Please enter a valid email address (e.g., name@example.com).',
+  tel:            (v) => /^\+?[\d\s\-().]{7,}$/.test(v) ? null : 'Please enter a valid phone number.',
+  'address-line1':(v) => v.trim().length > 0 ? null : 'Please enter your street address.',
+  city:           (v) => v.trim().length > 0 ? null : 'Please enter your city.',
+  state:          (v) => v.trim().length >= 2 ? null : 'Please enter your state (2-letter abbreviation).',
+  'postal-code':  (v) => /^\d{5}(-\d{4})?$/.test(v) ? null : 'Please enter a valid ZIP code (e.g., 90210).',
+  'card-number':  (v) => /^\d[\d\s]{13,18}\d$/.test(v) ? null : 'Please enter a valid 16-digit card number.',
+  'card-expiry':  (v) => /^(0[1-9]|1[0-2])\/(\d{2}|\d{4})$/.test(v) ? null : 'Please enter a valid expiry date (MM/YY).',
+  cvv:            (v) => /^\d{3,4}$/.test(v) ? null : 'Please enter your 3 or 4 digit security code.',
 };
 
 const INITIAL_FORM = {
@@ -44,55 +35,87 @@ const INITIAL_FORM = {
 };
 
 const ORDER_FAQS = [
-  { id: 'ofaq-1', question: 'Is my payment information secure?',
+  { id: 'ofaq-1',
+    question: 'Is my payment information secure?',
     answer: 'Absolutely. Your payment is processed through 256-bit SSL encryption — the same technology used by major banks. We never store your full card number and comply with PCI DSS standards.' },
-  { id: 'ofaq-2', question: 'When will my order ship?',
+  { id: 'ofaq-2',
+    question: 'When will my order ship?',
     answer: 'Orders placed before 2pm EST ship same day (Monday–Friday). Standard US delivery is 3–5 business days. You will receive a tracking email once your order ships.' },
-  { id: 'ofaq-3', question: 'What if it does not work for me?',
-    answer: 'No problem. You are covered by our 90-day money-back guarantee. Simply contact our support team at support@activatedyou.com or call 800-720-8403 and we will issue a full refund — no questions asked.' },
-  { id: 'ofaq-4', question: 'How do I cancel my subscription?',
+  { id: 'ofaq-3',
+    question: 'What if it does not work for me?',
+    answer: 'No problem. You are covered by our 90-day money-back guarantee. Contact us at support@activatedyou.com or call 800-720-8403 and we will issue a full refund — no questions asked.' },
+  { id: 'ofaq-4',
+    question: 'How do I cancel my subscription?',
     answer: 'You can cancel your subscription at any time by calling 800-720-8403 or emailing support@activatedyou.com. There are no cancellation fees and no contracts.' },
 ];
 
+const BENEFITS = [
+  { icon: '💪', title: 'Firms & Tightens',
+    body: "Dermaval™ + amino acids support your body's natural collagen production.†*" },
+  { icon: '🌿', title: '100% Plant-Based',
+    body: 'Vegan, no animal collagen. Third-party tested for purity and potency.' },
+  { icon: '✨', title: 'Reduces Fine Lines',
+    body: 'Vitamin C + antioxidants fight free-radical skin damage for smoother skin.†*' },
+  { icon: '💊', title: 'Just 1 Capsule Daily',
+    body: 'One easy capsule with water — no complicated routine, no powders to mix.' },
+];
+
+const REVIEWS = [
+  { id: 'r1', initials: 'BL', name: 'Beth L.', age: 58, stars: 5,
+    quote: "I went to my 40th high school reunion last month and everyone was asking what my secret was. My skin looked as good as it did in my 30s." },
+  { id: 'r2', initials: 'MK', name: 'Mary K.', age: 52, stars: 5,
+    quote: "After just three weeks, my eyes looked lifted and I had this inner glow I hadn't seen in years. My husband noticed without me saying a word." },
+  { id: 'r3', initials: 'RJ', name: 'Rita J.', age: 45, stars: 5,
+    quote: "I'd tried so many collagen powders with no luck. After three weeks, my skin looked visibly healthier — and my nails are stronger than ever." },
+];
+
+/* ── Main Component ──────────────────────────────────────────────────────── */
 export default function Order() {
   const navigate = useNavigate();
 
   /* ── A/B Variants ── */
-  const defaultPkg = getVariant('P3-A') === '6-bottle' ? '6-bottle' : '3-bottle';
-  const expressPayPlacement = getVariant('P3-D'); // 'above' or 'below'
-  const urgencyVariant = getVariant('P3-E');       // 'all', 'timer-only', 'none'
-  const pricingVariant = getVariant('P3-B');       // 'per-day' or 'per-bottle'
+  const defaultPkg       = getVariant('P3-A') === '6-bottle' ? '6-bottle' : '3-bottle';
+  const expressPlacement = getVariant('P3-D'); // 'above' | 'below'
+  const urgencyVariant   = getVariant('P3-E'); // 'all' | 'timer-only' | 'none'
+  const pricingVariant   = getVariant('P3-B'); // 'per-day' | 'per-bottle'
   const subscribeDefault = getVariant('P3-C') === 'subscribe';
 
   /* ── State ── */
   const [selectedPackage, setSelectedPackage] = useState(defaultPkg);
-  const [subscribed, setSubscribed] = useState(subscribeDefault);
-  const [bumpChecked, setBumpChecked] = useState(false);
-  const [cvvTooltipOpen, setCvvTooltipOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const [form, setForm] = useState(INITIAL_FORM);
-  const [errors, setErrors] = useState({});
+  const [subscribed, setSubscribed]           = useState(subscribeDefault);
+  const [bumpChecked, setBumpChecked]         = useState(false);
+  const [cvvTooltipOpen, setCvvTooltipOpen]   = useState(false);
+  const [form, setForm]       = useState(INITIAL_FORM);
+  const [errors, setErrors]   = useState({});
   const [touched, setTouched] = useState({});
   const [formError, setFormError] = useState(null);
 
-  const formRef = useRef(null);
-  const errorSummaryRef = useRef(null);
+  // Low-stock count: random 11–17, persist per session
+  const [stockCount] = useState(() => {
+    const stored = sessionStorage.getItem('esf_stock_count');
+    if (stored) return parseInt(stored, 10);
+    const n = Math.floor(Math.random() * 7) + 11;
+    sessionStorage.setItem('esf_stock_count', String(n));
+    return n;
+  });
+
+  const purchaseWidgetRef = useRef(null);
+  const formRef           = useRef(null);
+  const errorSummaryRef   = useRef(null);
 
   /* ── Derived values ── */
-  const pkg = PACKAGES.find((p) => p.value === selectedPackage) || PACKAGES[1];
-  const unitPrice = subscribed ? pkg.subscribePrice : pkg.pricePerBottle;
-  const baseTotal = subscribed
-    ? pkg.subscribePrice * pkg.bottles
-    : pkg.priceTotal;
-  const bumpTotal = bumpChecked ? 34 : 0;
+  const pkg        = PACKAGES.find((p) => p.value === selectedPackage) ?? PACKAGES[1];
+  const baseTotal  = subscribed ? pkg.subscribeTotal : pkg.priceTotal;
+  const bumpTotal  = bumpChecked ? 34 : 0;
   const grandTotal = baseTotal + bumpTotal;
+  const shipping   = grandTotal >= 99 ? 0 : 7.95;
 
   /* ── Handlers ── */
   const handleChange = (field) => (e) => {
-    setForm((f) => ({ ...f, [field]: e.target.value }));
+    const val = e.target.value;
+    setForm((f) => ({ ...f, [field]: val }));
     if (touched[field]) {
-      setErrors((err) => ({ ...err, [field]: validators[field]?.(e.target.value) ?? null }));
+      setErrors((err) => ({ ...err, [field]: validators[field]?.(val) ?? null }));
     }
   };
 
@@ -115,10 +138,8 @@ export default function Order() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
     if (!validateAll()) {
       setFormError('Please fix the errors below before continuing.');
-      // Move focus to error summary for screen readers
       requestAnimationFrame(() => errorSummaryRef.current?.focus());
       return;
     }
@@ -126,129 +147,182 @@ export default function Order() {
     navigate('/upsell-1');
   };
 
-  const scrollToForm = () => {
+  const scrollToForm = () =>
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+
+  const scrollToPurchaseWidget = () =>
+    purchaseWidgetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   const selectedPkgLabel = `${pkg.bottles}-Bottle (${pkg.days}-Day Supply)`;
   const priceLabel = `$${grandTotal.toFixed(2)}`;
 
   return (
     <>
+      {/* ── Sticky Nav Bar ── */}
+      <OrderStickyNav />
+
       <div className="order-page">
-        {/* ── Trust Bar ── */}
-        <TrustBar />
-
         <main id="main-content" className="order-page__main">
-          {/* ── Hero ── */}
-          <section className="order-hero" aria-labelledby="order-hero-heading">
-            <div className="container container--narrow">
-              <h1 id="order-hero-heading" className="order-hero__heading">
-                You're One Step Away From Firmer, Younger-Looking Skin
-              </h1>
-              <p className="order-hero__sub">
-                Choose your package below — save up to 40% today.
-                Free US shipping on orders $99+.
-              </p>
 
-              {/* Urgency elements — A/B Test P3-E */}
-              {(urgencyVariant === 'all' || urgencyVariant === 'timer-only') && (
-                <div className="order-hero__urgency">
-                  <CountdownTimer label="Special pricing ends in:" />
+          {/* ── HERO: 2-column layout ── */}
+          <section className="order-hero" aria-label="Product purchase">
+            <div className="container">
+              <div className="order-layout">
+
+                {/* ── LEFT: Image Gallery + Award Strip ── */}
+                <div className="order-col--left">
+                  <ImageGallery />
+                  <AwardStrip />
                 </div>
-              )}
 
-              {urgencyVariant === 'all' && (
-                <p className="inventory-alert" role="status">
-                  <span aria-hidden="true">⚠️</span>{' '}
-                  Only 14 units left at this price
-                </p>
-              )}
+                {/* ── RIGHT: Purchase Widget (10 modules) ── */}
+                <div
+                  className="order-col--right order-widget"
+                  ref={purchaseWidgetRef}
+                >
+                  {/* Module 1 — Rating Row */}
+                  <div className="order-widget__rating">
+                    <span
+                      className="order-widget__stars"
+                      aria-label="4.8 out of 5 stars"
+                      role="img"
+                    >
+                      ★★★★★
+                    </span>
+                    <span className="order-widget__score">4.8</span>
+                    <a href="#reviews" className="order-widget__review-count">
+                      (14,200+ reviews)
+                    </a>
+                  </div>
+
+                  {/* Module 2 — Product Title */}
+                  <div>
+                    <h1 className="order-widget__title">
+                      Essential Skin Food™
+                    </h1>
+                    <p className="order-widget__sub">
+                      Plant-based collagen support — firmer, smoother, more radiant skin
+                      in as little as 4 weeks.†*
+                    </p>
+                  </div>
+
+                  {/* Module 3 — Low-Stock Urgency (A/B P3-E: 'all') */}
+                  {urgencyVariant === 'all' && (
+                    <p
+                      className="order-widget__stock"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <span className="order-widget__stock-dot" aria-hidden="true" />
+                      Only {stockCount} units left at this price — order now to lock in
+                      your discount
+                    </p>
+                  )}
+
+                  {/* Countdown Timer (A/B P3-E: 'all' or 'timer-only') */}
+                  {(urgencyVariant === 'all' || urgencyVariant === 'timer-only') && (
+                    <CountdownTimer
+                      label="Special pricing ends in:"
+                      storageKey="order-timer"
+                    />
+                  )}
+
+                  {/* Module 4 — Subscribe / One-Time Toggle */}
+                  <SubscribeToggle subscribed={subscribed} onChange={setSubscribed} />
+
+                  {/* Module 5 — Package Selector */}
+                  <PackageSelector
+                    selected={selectedPackage}
+                    onChange={setSelectedPackage}
+                    pricingVariant={pricingVariant}
+                    subscribed={subscribed}
+                  />
+
+                  {/* Module 6 — Primary CTA */}
+                  <button
+                    type="button"
+                    className="btn btn--primary btn--full order-cta"
+                    onClick={scrollToForm}
+                    aria-label={`Claim discounted supply — ${selectedPkgLabel}, $${grandTotal.toFixed(2)}`}
+                    data-track="order-cta-click"
+                    data-test-id="P3-A"
+                  >
+                    <span aria-hidden="true">🛒</span>{' '}
+                    Claim My Discounted Supply →
+                  </button>
+
+                  {/* Module 7 — Express Pay (A/B P3-D: above purchase widget) */}
+                  {expressPlacement === 'above' && <ExpressPay />}
+
+                  {/* Module 8 — Trust Strip */}
+                  <div
+                    className="order-widget__trust"
+                    aria-label="Purchase guarantees"
+                  >
+                    {[
+                      { icon: '🔒', label: '256-bit secure checkout' },
+                      { icon: '✓',  label: '90-day money-back' },
+                      { icon: '🚚', label: 'Free US shipping $99+' },
+                      { icon: '🌿', label: '100% plant-based' },
+                    ].map(({ icon, label }) => (
+                      <span key={label} className="order-widget__trust-item">
+                        <span aria-hidden="true">{icon}</span> {label}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Module 9 — Guarantee Badge */}
+                  <div className="order-widget__guarantee" role="note">
+                    <div
+                      className="order-widget__guarantee-icon"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </div>
+                    <div>
+                      <p className="order-widget__guarantee-title">
+                        90-Day ActivatedYou Promise
+                      </p>
+                      <p className="order-widget__guarantee-body">
+                        Not thrilled? Return it within 90 days — even if used — for a
+                        full refund. No questions asked.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Module 10 — Order Bump */}
+                  <OrderBump checked={bumpChecked} onChange={setBumpChecked} />
+
+                </div>
+                {/* end .order-col--right */}
+              </div>
+              {/* end .order-layout */}
             </div>
           </section>
 
+          {/* ── Below Fold ── */}
           <div className="container container--narrow">
 
-            {/* ── Package Selector ── */}
-            <section className="order-section" aria-labelledby="package-section-heading">
-              <h2 id="package-section-heading" className="sr-only">
-                Choose Your Package
-              </h2>
-              <PackageSelector
-                selected={selectedPackage}
-                onChange={setSelectedPackage}
-                pricingVariant={pricingVariant}
-              />
+            <div className="order-divider" aria-hidden="true" />
 
-              {/* Subscribe & Save toggle */}
-              <div className="subscribe-toggle">
-                <label className="subscribe-toggle__label" htmlFor="subscribe">
-                  <input
-                    type="checkbox"
-                    id="subscribe"
-                    name="subscribe"
-                    checked={subscribed}
-                    onChange={(e) => setSubscribed(e.target.checked)}
-                    className="subscribe-toggle__checkbox"
-                    aria-describedby="subscribe-desc"
-                  />
-                  <span className="subscribe-toggle__text">
-                    Subscribe &amp; Save an extra 10%
-                    {subscribed && (
-                      <strong className="subscribe-toggle__badge"> — Active!</strong>
-                    )}
-                  </span>
-                </label>
-                <p id="subscribe-desc" className="subscribe-toggle__info">
-                  Receive monthly. Cancel anytime by calling 800-720-8403. No fees.
-                </p>
-              </div>
+            <BenefitsGrid />
 
-              {/* Order total preview */}
-              <div className="order-total-preview" aria-live="polite" aria-atomic="true">
-                <span className="order-total-preview__label">Your total today:</span>
-                <span className="order-total-preview__amount">
-                  ${grandTotal.toFixed(2)}
-                </span>
-                {subscribed && (
-                  <span className="order-total-preview__note">
-                    (Subscribe &amp; Save applied)
-                  </span>
-                )}
-              </div>
+            <div className="order-divider" aria-hidden="true" />
 
-              <button
-                type="button"
-                className="btn btn--primary btn--full order-cta"
-                onClick={scrollToForm}
-                aria-label={`Continue to checkout — ${selectedPkgLabel}, $${grandTotal.toFixed(2)}`}
-              >
-                Continue to Secure Checkout →
-              </button>
-            </section>
+            <ReviewsSection />
 
-            {/* ── Social Proof ── */}
-            <section className="order-proof" aria-label="Customer reviews summary">
-              <div className="order-proof__rating">
-                <span className="stars" aria-label="4.8 out of 5 stars">★★★★★</span>
-                <span className="order-proof__score">4.8/5</span>
-              </div>
-              <p className="order-proof__count">
-                Trusted by <strong>67,000+</strong> women over 40
-              </p>
-            </section>
+            <RepeatCTABand onCtaClick={scrollToPurchaseWidget} />
 
-            {/* ── Order Form ── */}
+            {/* ── Checkout Form ── */}
             <section
-              className="order-form-section"
+              className="order-checkout"
               aria-labelledby="checkout-heading"
               ref={formRef}
             >
-              <h2 id="checkout-heading" className="order-form-section__heading">
+              <h2 id="checkout-heading" className="order-checkout__heading">
                 Secure Checkout
               </h2>
 
-              {/* Error summary — announced by screen readers */}
               {formError && (
                 <div
                   ref={errorSummaryRef}
@@ -264,8 +338,8 @@ export default function Order() {
                 <span aria-hidden="true">*</span> Required field
               </p>
 
-              {/* ── Express Pay (A/B Test P3-D: position above or below CC) ── */}
-              {expressPayPlacement === 'above' && <ExpressPay />}
+              {/* Express pay ABOVE credit card form (A/B P3-D variant A) */}
+              {expressPlacement !== 'above' && <ExpressPay />}
 
               <form
                 noValidate
@@ -298,8 +372,7 @@ export default function Order() {
 
                   <FormField
                     id="email" label="Email Address" type="email" required
-                    autoComplete="email"
-                    placeholder="you@example.com"
+                    autoComplete="email" placeholder="you@example.com"
                     value={form.email}
                     onChange={handleChange('email')}
                     onBlur={handleBlur('email')}
@@ -309,8 +382,7 @@ export default function Order() {
 
                   <FormField
                     id="tel" label="Phone Number" type="tel" required
-                    autoComplete="tel"
-                    placeholder="(555) 555-5555"
+                    autoComplete="tel" placeholder="(555) 555-5555"
                     value={form.tel}
                     onChange={handleChange('tel')}
                     onBlur={handleBlur('tel')}
@@ -320,8 +392,7 @@ export default function Order() {
 
                   <FormField
                     id="address-line1" label="Street Address" required
-                    autoComplete="address-line1"
-                    placeholder="123 Main St"
+                    autoComplete="address-line1" placeholder="123 Main St"
                     value={form['address-line1']}
                     onChange={handleChange('address-line1')}
                     onBlur={handleBlur('address-line1')}
@@ -339,8 +410,7 @@ export default function Order() {
                     />
                     <FormField
                       id="state" label="State" required
-                      autoComplete="address-level1"
-                      placeholder="CA"
+                      autoComplete="address-level1" placeholder="CA"
                       value={form.state}
                       onChange={handleChange('state')}
                       onBlur={handleBlur('state')}
@@ -349,9 +419,7 @@ export default function Order() {
                     <FormField
                       id="postal-code" label="ZIP Code" required
                       autoComplete="postal-code"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      placeholder="90210"
+                      inputMode="numeric" pattern="[0-9]*" placeholder="90210"
                       value={form['postal-code']}
                       onChange={handleChange('postal-code')}
                       onBlur={handleBlur('postal-code')}
@@ -359,11 +427,6 @@ export default function Order() {
                     />
                   </div>
                 </fieldset>
-
-                {/* ── Order Bump (above payment per A/B Test P4-B default) ── */}
-                <div className="order-bump-wrapper">
-                  <OrderBump checked={bumpChecked} onChange={setBumpChecked} />
-                </div>
 
                 {/* ── Payment ── */}
                 <fieldset className="order-form__fieldset">
@@ -376,8 +439,7 @@ export default function Order() {
 
                   <FormField
                     id="card-number" label="Card Number" required
-                    autoComplete="cc-number"
-                    inputMode="numeric"
+                    autoComplete="cc-number" inputMode="numeric"
                     placeholder="1234 5678 9012 3456"
                     value={form['card-number']}
                     onChange={handleChange('card-number')}
@@ -388,15 +450,14 @@ export default function Order() {
                   <div className="order-form__row order-form__row--2col">
                     <FormField
                       id="card-expiry" label="Expiry Date" required
-                      autoComplete="cc-exp"
-                      placeholder="MM/YY"
+                      autoComplete="cc-exp" placeholder="MM/YY"
                       value={form['card-expiry']}
                       onChange={handleChange('card-expiry')}
                       onBlur={handleBlur('card-expiry')}
                       errorMessage={errors['card-expiry']}
                     />
 
-                    {/* CVV with tooltip */}
+                    {/* CVV with tooltip — "What's this?" for 40+ users */}
                     <div className="form-field">
                       <label htmlFor="cvv" className="form-field__label">
                         Security Code (CVV){' '}
@@ -412,29 +473,18 @@ export default function Order() {
                           <span aria-hidden="true">?</span>
                         </button>
                       </label>
-
                       {cvvTooltipOpen && (
-                        <div
-                          id="cvv-tooltip"
-                          role="tooltip"
-                          className="cvv-tooltip"
-                        >
+                        <div id="cvv-tooltip" role="tooltip" className="cvv-tooltip">
                           The 3-digit code on the back of your Visa or Mastercard.
                           American Express cards use a 4-digit code on the front.
                         </div>
                       )}
-
                       <input
-                        type="text"
-                        id="cvv"
-                        name="cvv"
-                        className={`form-field__input ${errors.cvv ? 'form-field--error' : ''}`}
-                        required
-                        aria-required="true"
-                        autoComplete="cc-csc"
-                        inputMode="numeric"
-                        placeholder="123"
-                        maxLength={4}
+                        type="text" id="cvv" name="cvv"
+                        className={`form-field__input${errors.cvv ? ' form-field--error' : ''}`}
+                        required aria-required="true"
+                        autoComplete="cc-csc" inputMode="numeric"
+                        placeholder="123" maxLength={4}
                         value={form.cvv}
                         onChange={handleChange('cvv')}
                         onBlur={handleBlur('cvv')}
@@ -449,8 +499,8 @@ export default function Order() {
                     </div>
                   </div>
 
-                  {/* Express pay below CC (A/B Test P3-D variant B) */}
-                  {expressPayPlacement === 'below' && <ExpressPay />}
+                  {/* Express pay BELOW card form (A/B P3-D variant B) */}
+                  {expressPlacement === 'below' && <ExpressPay />}
                 </fieldset>
 
                 {/* ── Order Summary ── */}
@@ -461,11 +511,16 @@ export default function Order() {
                   <h3 id="order-summary-heading" className="order-summary__heading">
                     Order Summary
                   </h3>
-                  <table className="order-summary__table" aria-label="Order breakdown">
+                  <table
+                    className="order-summary__table"
+                    aria-label="Order breakdown"
+                  >
                     <tbody>
                       <tr>
                         <td>Essential Skin Food ({selectedPkgLabel})</td>
-                        <td className="order-summary__amount">${baseTotal.toFixed(2)}</td>
+                        <td className="order-summary__amount">
+                          ${baseTotal.toFixed(2)}
+                        </td>
                       </tr>
                       {bumpChecked && (
                         <tr>
@@ -476,9 +531,11 @@ export default function Order() {
                       <tr>
                         <td>Shipping</td>
                         <td className="order-summary__amount">
-                          {grandTotal >= 99 ? (
+                          {shipping === 0 ? (
                             <span className="order-summary__free">FREE</span>
-                          ) : '$7.95'}
+                          ) : (
+                            `$${shipping.toFixed(2)}`
+                          )}
                         </td>
                       </tr>
                     </tbody>
@@ -486,42 +543,46 @@ export default function Order() {
                       <tr className="order-summary__total-row">
                         <th scope="row">Total Today</th>
                         <td className="order-summary__total-amount">
-                          ${(grandTotal + (grandTotal >= 99 ? 0 : 7.95)).toFixed(2)}
+                          ${(grandTotal + shipping).toFixed(2)}
                         </td>
                       </tr>
                     </tfoot>
                   </table>
                 </section>
 
-                {/* ── Guarantee + Submit ── */}
-                <div className="order-guarantee">
-                  <div className="guarantee-badge">
-                    <span aria-hidden="true" style={{ fontSize: '2rem' }}>🛡️</span>
-                    <div>
-                      <strong>90-Day Money-Back Guarantee</strong>
-                      <p className="supporting-text">
-                        Not satisfied? Get a full refund — no questions asked.
-                      </p>
-                    </div>
+                {/* ── Guarantee ── */}
+                <div className="order-guarantee" role="note">
+                  <span aria-hidden="true" style={{ fontSize: '2rem' }}>🛡️</span>
+                  <div>
+                    <strong>90-Day Money-Back Guarantee</strong>
+                    <p className="supporting-text">
+                      Not satisfied? Get a full refund — no questions asked.
+                    </p>
                   </div>
                 </div>
 
+                {/* ── Submit ── */}
                 <button
                   type="submit"
                   className="btn btn--primary btn--full order-submit-btn"
-                  aria-label={`Place order for ${selectedPkgLabel} — $${grandTotal.toFixed(2)}`}
+                  aria-label={`Place order for ${selectedPkgLabel} — $${(grandTotal + shipping).toFixed(2)}`}
+                  data-track="checkout-submit"
                 >
                   <span aria-hidden="true">🔒</span>{' '}
-                  Place My Secure Order — ${grandTotal.toFixed(2)}
+                  Place My Secure Order — ${(grandTotal + shipping).toFixed(2)}
                 </button>
 
                 <p className="order-form__disclaimer supporting-text">
                   By placing your order you agree to our{' '}
-                  <a href="#" onClick={(e) => e.preventDefault()}>Terms &amp; Conditions</a>{' '}
+                  <a href="#" onClick={(e) => e.preventDefault()}>
+                    Terms &amp; Conditions
+                  </a>{' '}
                   and{' '}
-                  <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a>.
+                  <a href="#" onClick={(e) => e.preventDefault()}>
+                    Privacy Policy
+                  </a>.
                   {subscribed
-                    ? ' Your subscription will renew monthly. Cancel anytime.'
+                    ? ' Your subscription renews monthly. Cancel anytime.'
                     : ' This is a one-time purchase — no subscription.'}
                 </p>
               </form>
@@ -531,12 +592,9 @@ export default function Order() {
             <section className="delivery-estimate" aria-label="Estimated delivery">
               <p>
                 <span aria-hidden="true">🚚</span>{' '}
-                Order by <time dateTime="14:00">2:00 PM EST</time> today and
-                your package ships <strong>same day</strong>.
-                Estimated arrival:{' '}
-                <time dateTime={deliveryDateAttr()}>
-                  {deliveryDateDisplay()}
-                </time>.
+                Order by <time dateTime="14:00">2:00 PM EST</time> today and your package
+                ships <strong>same day</strong>. Estimated arrival:{' '}
+                <time dateTime={deliveryDateAttr()}>{deliveryDateDisplay()}</time>.
               </p>
             </section>
 
@@ -552,13 +610,14 @@ export default function Order() {
             <p className="fda-disclaimer" role="note">
               †These statements have not been evaluated by the Food and Drug Administration.
               This product is not intended to diagnose, treat, cure, or prevent any disease.
-              Individual results may vary.
+              Individual results may vary. ActivatedYou®, Santa Monica, CA.
             </p>
+
           </div>
+          {/* end below fold */}
         </main>
       </div>
 
-      {/* Sticky mobile CTA */}
       <StickyBuyBar
         onCtaClick={scrollToForm}
         selectedPackage={selectedPkgLabel}
@@ -568,20 +627,46 @@ export default function Order() {
   );
 }
 
-/* ── Sub-components ──────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   Sub-components
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+function OrderStickyNav() {
+  return (
+    <nav className="order-sticky-nav" aria-label="Store navigation">
+      <span className="order-sticky-nav__brand">ActivatedYou</span>
+
+      {/* Desktop: 3 trust micro-items */}
+      <div className="order-sticky-nav__trust" aria-hidden="true">
+        <span className="order-sticky-nav__trust-item">
+          <span>🔒</span> Secure checkout
+        </span>
+        <span className="order-sticky-nav__trust-item">
+          <span>✓</span> 90-day guarantee
+        </span>
+        <span className="order-sticky-nav__trust-item">
+          <span>🚚</span> Free US shipping $99+
+        </span>
+      </div>
+
+      {/* Mobile: lock icon only */}
+      <span className="order-sticky-nav__lock" aria-hidden="true">🔒</span>
+    </nav>
+  );
+}
 
 function ExpressPay() {
   return (
     <div className="express-pay" aria-label="Express checkout options">
       <p className="express-pay__label">
-        <span className="express-pay__line" aria-hidden="true"></span>
+        <span className="express-pay__line" aria-hidden="true" />
         Express Checkout
-        <span className="express-pay__line" aria-hidden="true"></span>
+        <span className="express-pay__line" aria-hidden="true" />
       </p>
       <div className="express-pay__buttons">
         <button
           type="button"
-          className="btn-express btn-express--apple"
+          className="btn-express"
           aria-label="Pay with Apple Pay"
           onClick={() => alert('Apple Pay integration required')}
         >
@@ -589,7 +674,7 @@ function ExpressPay() {
         </button>
         <button
           type="button"
-          className="btn-express btn-express--paypal"
+          className="btn-express"
           aria-label="Pay with PayPal"
           onClick={() => alert('PayPal integration required')}
         >
@@ -598,6 +683,89 @@ function ExpressPay() {
       </div>
       <p className="express-pay__or">— or pay with card below —</p>
     </div>
+  );
+}
+
+function BenefitsGrid() {
+  return (
+    <section className="order-benefits" aria-labelledby="benefits-heading">
+      <h2 id="benefits-heading" className="order-benefits__heading">
+        4 Reasons 67,000+ Women Trust Essential Skin Food
+      </h2>
+      <div className="order-benefits__grid">
+        {BENEFITS.map((b) => (
+          <div key={b.title} className="benefit-card">
+            <div className="benefit-card__icon" aria-hidden="true">{b.icon}</div>
+            <h3 className="benefit-card__title">{b.title}</h3>
+            <p className="benefit-card__body">{b.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ReviewsSection() {
+  return (
+    <section
+      className="order-reviews"
+      id="reviews"
+      aria-labelledby="reviews-heading"
+    >
+      <h2 id="reviews-heading" className="order-reviews__heading">
+        Real results from real women
+      </h2>
+      <div className="order-reviews__grid">
+        {REVIEWS.map((r) => (
+          <article key={r.id} className="review-card">
+            <div
+              className="review-card__stars"
+              aria-label={`${r.stars} out of 5 stars`}
+            >
+              {'★'.repeat(r.stars)}
+            </div>
+            <blockquote className="review-card__quote">
+              <p>"{r.quote}"</p>
+            </blockquote>
+            <cite className="review-card__cite">
+              <span className="review-card__avatar" aria-hidden="true">
+                {r.initials}
+              </span>
+              <span className="review-card__author">
+                <strong>{r.name}</strong>
+                <span className="review-card__meta">
+                  Verified Buyer · Age {r.age}
+                </span>
+              </span>
+            </cite>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RepeatCTABand({ onCtaClick }) {
+  return (
+    <section
+      className="order-repeat-cta"
+      aria-labelledby="repeat-cta-heading"
+    >
+      <h2 id="repeat-cta-heading" className="order-repeat-cta__heading">
+        Ready to transform your skin from the inside out?
+      </h2>
+      <p className="order-repeat-cta__sub">
+        Join 67,000+ women already seeing results. 90-day guarantee — try it risk-free.
+      </p>
+      <button
+        type="button"
+        className="btn btn--primary order-repeat-cta__btn"
+        onClick={onCtaClick}
+        data-track="repeat-cta-click"
+      >
+        Claim My Discounted Supply →
+      </button>
+    </section>
   );
 }
 
@@ -614,8 +782,7 @@ function addBusinessDays(date, days) {
 }
 
 function deliveryDateAttr() {
-  const d = addBusinessDays(new Date(), 5);
-  return d.toISOString().split('T')[0];
+  return addBusinessDays(new Date(), 5).toISOString().split('T')[0];
 }
 
 function deliveryDateDisplay() {

@@ -107,6 +107,11 @@
   margin-bottom: 0.25rem;
 }
 
+/* "Best Value" badge uses gold */
+.package-card__badge--gold {
+  background: var(--esf-gold-text);
+}
+
 /* ── Card Content ──────────────────────────────────────────────────────────── */
 .package-card__header {
   display: flex;
