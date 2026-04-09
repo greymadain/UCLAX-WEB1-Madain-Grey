@@ -1,0 +1,207 @@
+.downsell-page {
+  background: var(--color-bg-page);
+  min-height: 100vh;
+}
+
+.downsell-page__main {
+  padding-block: var(--space-xl);
+}
+
+.downsell-bridge {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.downsell-bridge__text {
+  display: inline-block;
+  font-size: 0.944rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* ── Downsell Card ───────────────────────────────────────────────────────── */
+.downsell-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.downsell-card__tag {
+  display: inline-block;
+  padding: 0.3rem 0.875rem;
+  background: var(--color-bg-gold-tint);
+  color: var(--color-brand-gold);
+  font-size: 0.833rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-brand-gold-decorative);
+  align-self: center;
+}
+
+.downsell-card__headline {
+  text-align: center;
+  font-size: clamp(1.375rem, 3.5vw, 2rem);
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.downsell-card__subhead {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  max-width: 50ch;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+/* Product */
+.downsell-card__product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-bg-page);
+  border-radius: var(--radius-md);
+}
+
+.downsell-card__icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.downsell-card__product-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.125rem;
+}
+
+.downsell-card__product-sub {
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* Benefits */
+.downsell-card__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.downsell-card__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.944rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+.downsell-card__benefits li::before {
+  content: '✓';
+  flex-shrink: 0;
+  color: var(--color-brand-green);
+  font-weight: 700;
+}
+
+/* Pricing */
+.downsell-card__pricing {
+  text-align: center;
+  padding: var(--space-md);
+  background: var(--color-bg-green-tint);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-brand-green);
+}
+
+.downsell-card__original {
+  font-size: 0.944rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.downsell-card__offer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-sm);
+}
+
+.downsell-card__price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-brand-green);
+  line-height: 1;
+}
+
+.downsell-card__savings {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  background: var(--color-brand-green);
+  color: white;
+  font-size: 0.889rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
+.downsell-card__note {
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* Accept button */
+.downsell-accept-btn {
+  min-height: 60px;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 12px rgba(61, 140, 47, 0.3);
+}
+
+/* Guarantee */
+.downsell-card__guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.889rem;
+  font-weight: 600;
+  color: var(--color-success);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Decline */
+.downsell-decline-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
+  width: 100%;
+  transition: color var(--transition-fast);
+}
+
+.downsell-decline-btn:hover {
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,42 @@
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: #FEF3C7;            /* Amber tint — warm urgency */
+  border: 2px solid #D97706;      /* Amber border — 3:1 on yellow ✅ */
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.countdown-timer__label {
+  font-size: 0.889rem;
+  font-weight: 600;
+  color: #92400E;                  /* 6.4:1 on amber bg ✅ */
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.countdown-timer__clock-icon {
+  font-size: 1rem;
+}
+
+.countdown-timer__display {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #92400E;                  /* 6.4:1 on amber ✅ */
+  letter-spacing: 0.05em;
+  min-width: 5ch;                  /* Prevents layout shift as digits change */
+  transition: color var(--transition-fast);
+}
+
+/* Reduced motion: no blinking animation */
+@media (prefers-reduced-motion: no-preference) {
+  .countdown-timer__display {
+    animation: none; /* no flash by default — clean */
+  }
+}

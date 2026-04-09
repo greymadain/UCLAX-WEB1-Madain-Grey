@@ -1,0 +1,97 @@
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.faq-accordion__item {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.faq-accordion__item:last-child {
+  border-bottom: none;
+}
+
+.faq-accordion__heading {
+  font-size: 1rem; /* Override h3 default — consistent with body */
+  margin: 0;
+}
+
+/* ── Trigger Button ──────────────────────────────────────────────────────── */
+.faq-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.125rem var(--space-lg);
+  background: var(--color-bg-card);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-height: 56px; /* Well above 44px WCAG 2.5.8 */
+  transition: background-color var(--transition-fast);
+}
+
+.faq-accordion__trigger:hover {
+  background-color: var(--color-bg-page);
+}
+
+.faq-accordion__trigger--open {
+  background-color: var(--color-bg-green-tint);
+  color: var(--color-brand-green);
+}
+
+.faq-accordion__question {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* +/− icon */
+.faq-accordion__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-border-light);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.faq-accordion__trigger--open .faq-accordion__icon {
+  background: var(--color-brand-green);
+  color: white;
+}
+
+/* ── Content Panel ───────────────────────────────────────────────────────── */
+.faq-accordion__content {
+  background: var(--color-bg-card);
+}
+
+.faq-accordion__content--open {
+  /* Display is controlled by the `hidden` attribute — CSS is for styling only */
+}
+
+.faq-accordion__body {
+  padding: 0.75rem var(--space-lg) 1.25rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.faq-accordion__body p {
+  max-width: 65ch;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}

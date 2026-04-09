@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Watch — VSL (Video Sales Letter) Page Styles
+   Route: /watch
+   WCAG 2.2 AA | Mobile-First | 40+ Audience Optimized
+   ========================================================================== */
+
+/* ── Skip link (becomes visible on focus) ────────────────────────────────── */
+.watch-skip-link:focus {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 9999;
+  background: var(--color-bg-card);
+  color: var(--color-brand-green);
+  padding: var(--space-sm) var(--space-lg);
+  border: 3px solid var(--color-focus-ring);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  text-decoration: none;
+  /* Override .sr-only when focused */
+  width: auto;
+  height: auto;
+  clip: auto;
+  white-space: normal;
+  overflow: visible;
+  margin: 0;
+}
+
+/* ── Main wrapper ─────────────────────────────────────────────────────────── */
+.watch-main {
+  background-color: var(--color-bg-page);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ── Hero section ─────────────────────────────────────────────────────────── */
+.watch-hero {
+  background-color: var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border-light);
+  padding-block: var(--space-xl) var(--space-2xl);
+  text-align: center;
+}
+
+.watch-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.watch-hero__eyebrow {
+  /* .section-eyebrow from global.css applies */
+}
+
+/* ── Social proof bar ─────────────────────────────────────────────────────── */
+.watch-social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-bg-gold-tint);
+  border: 1px solid var(--color-brand-gold-decorative);
+  border-radius: var(--radius-full);
+}
+
+.watch-social-proof__stars {
+  /* .stars from global.css — color is --color-brand-gold */
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.watch-social-proof__text {
+  font-size: 0.889rem;
+  font-weight: 700;
+  color: var(--color-brand-gold);   /* #8A6A1A — 5.2:1 on #FBF5E6 ✅ */
+}
+
+/* ── Hero headline ────────────────────────────────────────────────────────── */
+.watch-hero__headline {
+  /* h1 from global.css */
+  max-width: 680px;
+  text-align: center;
+}
+
+.watch-hero__subhead {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* ── Video section ────────────────────────────────────────────────────────── */
+.watch-video-section {
+  padding-block: var(--space-2xl);
+}
+
+/* 16:9 aspect-ratio container */
+.watch-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #0D0D0D;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Focus ring for the frame region */
+  isolation: isolate;
+}
+
+/* ── Play button ─────────────────────────────────────────────────────────── */
+.watch-play-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.watch-play-btn:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: -4px; /* inset focus ring so it's always visible */
+}
+
+.watch-play-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;         /* Well above 60px spec minimum */
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--color-brand-green);
+  border-radius: var(--radius-full);
+  font-size: 1.75rem;
+  line-height: 1;
+  padding-left: 4px;   /* Optical center for play triangle */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-fast),
+              background-color var(--transition-fast);
+  /* Ensure 60px+ including any transform */
+}
+
+.watch-play-btn:hover .watch-play-btn__icon,
+.watch-play-btn:focus-visible .watch-play-btn__icon {
+  transform: scale(1.1);
+  background-color: #FFFFFF;
+}
+
+/* ── Video placeholder content ───────────────────────────────────────────── */
+.watch-video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  text-align: center;
+  pointer-events: none; /* clicks pass through to play button */
+  z-index: 1;
+}
+
+.watch-video-placeholder--playing {
+  pointer-events: auto;
+}
+
+.watch-video-placeholder__msg {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: #FFFFFF;
+  margin-bottom: var(--space-xs);
+  max-width: none;
+}
+
+.watch-video-placeholder__sub {
+  /* .supporting-text from global.css */
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+}
+
+/* ── Below-video meta row ─────────────────────────────────────────────────── */
+.watch-video-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.watch-transcript-toggle {
+  /* .btn .btn--ghost from global.css */
+  color: var(--color-brand-green);
+  font-weight: 600;
+  text-decoration: underline;
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  min-width: auto;
+}
+
+.watch-transcript-toggle:hover {
+  color: var(--color-brand-green-dark);
+}
+
+.watch-video-meta__captions {
+  /* .supporting-text from global.css */
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ── Transcript panel ─────────────────────────────────────────────────────── */
+.watch-transcript {
+  /* hidden attribute controls display — no animation needed for AT */
+}
+
+.watch-transcript--open {
+  /* revealed by removing hidden attribute */
+}
+
+.watch-transcript__body {
+  padding: var(--space-lg);
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+}
+
+.watch-transcript__body p {
+  color: var(--color-text-secondary);
+}
+
+/* ── CTA wrapper ─────────────────────────────────────────────────────────── */
+.watch-cta-wrap {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl);
+  background-color: var(--color-bg-green-tint);
+  border: 2px solid var(--color-brand-green);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  box-shadow: var(--shadow-card);
+}
+
+/* Hidden state: visually hidden + pointer-events off + removed from tab order */
+.watch-cta-wrap--hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  /* Keep in DOM so height is reserved — prevents layout shift */
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.watch-cta-wrap--visible {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.watch-cta-wrap--after-testimonials {
+  margin-top: var(--space-2xl);
+  background-color: var(--color-bg-card);
+}
+
+.watch-cta-wrap__nudge {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.watch-cta-btn {
+  /* extends .btn .btn--primary .btn--full from global.css */
+  max-width: 520px;
+  font-size: 1.05rem;
+}
+
+.watch-cta-wrap__sub {
+  /* .supporting-text from global.css */
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* ── Section headings ─────────────────────────────────────────────────────── */
+.watch-section-heading {
+  /* h2 from global.css */
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.watch-section-sub {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+/* ── Testimonials section ─────────────────────────────────────────────────── */
+.watch-testimonials {
+  background-color: var(--color-bg-card);
+  border-block: 1px solid var(--color-border-light);
+}
+
+.watch-testimonials__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile: single column */
+  gap: var(--space-lg);
+}
+
+.watch-testimonials__item {
+  /* resets li margin from global */
+  margin-bottom: 0;
+}
+
+/* ── FAQ section ─────────────────────────────────────────────────────────── */
+.watch-faq {
+  background-color: var(--color-bg-page);
+}
+
+/* ── Footer / disclaimer ──────────────────────────────────────────────────── */
+.watch-footer {
+  padding-bottom: var(--space-2xl);
+}
+
+/* ── Tablet (768px+) ─────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .watch-play-btn__icon {
+    width: 96px;
+    height: 96px;
+    font-size: 2.25rem;
+  }
+
+  .watch-testimonials__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .watch-video-meta {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ── Desktop (1024px+) ───────────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .watch-testimonials__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .watch-cta-btn {
+    width: auto;
+    min-width: 420px;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .watch-cta-wrap--hidden,
+  .watch-cta-wrap--visible {
+    transition: none;
+  }
+}
+
+/* ── High-contrast / forced-colors ──────────────────────────────────────── */
+@media (forced-colors: active) {
+  .watch-video-frame {
+    border: 2px solid ButtonText;
+  }
+
+  .watch-play-btn__icon {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border: 2px solid ButtonText;
+  }
+
+  .watch-cta-wrap {
+    border: 2px solid ButtonText;
+  }
+
+  .watch-social-proof {
+    border: 1px solid ButtonText;
+  }
+}

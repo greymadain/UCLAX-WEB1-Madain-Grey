@@ -1,0 +1,367 @@
+/* ==========================================================================
+   Presell — Editorial Advertorial Styles
+   Route: /presell
+   WCAG 2.2 AA | Mobile-First | 40+ Audience Optimized
+   ========================================================================== */
+
+/* ── Masthead ────────────────────────────────────────────────────────────── */
+.presell-masthead {
+  background-color: var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border-light);
+  padding-block: var(--space-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.presell-masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.presell-masthead__pub {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* "Sponsored" label — gold text, clearly visible, ≥ 4.5:1 */
+.presell-masthead__ad-label {
+  display: inline-block;
+  font-size: 0.889rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-gold);       /* #8A6A1A — 5.2:1 on white ✅ */
+  background-color: var(--color-bg-gold-tint);
+  border: 1px solid var(--color-brand-gold-decorative);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Main layout ─────────────────────────────────────────────────────────── */
+.presell-main {
+  background-color: var(--color-bg-page);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ── Article container — readable line length ────────────────────────────── */
+.presell-article {
+  /* article itself stretches full width;
+     inner elements constrained by .container + max-width */
+}
+
+/* ── Article header ──────────────────────────────────────────────────────── */
+.presell-article__header {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.presell-article__headline {
+  /* inherits h1 from global.css */
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+/* ── Meta / byline row ───────────────────────────────────────────────────── */
+.presell-article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.presell-article__byline {
+  font-style: normal;   /* reset <address> italic default */
+  font-size: 0.889rem;
+  color: var(--color-text-secondary);
+}
+
+.presell-article__author-link {
+  color: var(--color-brand-green);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.presell-article__author-link:hover {
+  color: var(--color-brand-green-dark);
+}
+
+.presell-article__dateline {
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ── Hero image ──────────────────────────────────────────────────────────── */
+.presell-article__hero-fig {
+  margin-block: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.presell-article__hero-img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;         /* Mobile constraint per spec */
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-md);
+}
+
+.presell-article__hero-caption {
+  /* inherits figcaption size (0.889rem) from global.css */
+  color: var(--color-text-muted);
+  padding-top: var(--space-sm);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Body copy column ────────────────────────────────────────────────────── */
+.presell-article__body {
+  max-width: 800px;
+  margin-inline: auto;
+  padding-top: var(--space-xl);
+}
+
+/* Sections get top breathing room */
+.presell-article__body section + section {
+  /* divided by <hr class="divider"> */
+}
+
+.presell-article__subhead {
+  /* inherits h2 from global.css */
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+/* ── Pull-quote blockquote ───────────────────────────────────────────────── */
+.presell-article__pullquote {
+  margin-block: var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
+  border-left: 4px solid var(--color-brand-gold-decorative);
+  background-color: var(--color-bg-gold-tint);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.presell-article__pullquote p {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  max-width: none; /* override global p max-width inside blockquote */
+}
+
+.presell-article__pullquote--featured {
+  border-left-color: var(--color-brand-green);
+  background-color: var(--color-bg-green-tint);
+}
+
+.presell-article__pullquote-cite {
+  display: block;
+  font-size: 0.889rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ── Ingredient "Did You Know?" box ─────────────────────────────────────── */
+.presell-ingredient-box {
+  margin-block: var(--space-xl);
+  padding: var(--space-lg);
+  background-color: var(--color-bg-green-tint);
+  border: 2px solid var(--color-brand-gold-decorative);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.presell-ingredient-box__label {
+  font-size: 0.889rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-gold);   /* #8A6A1A — 5.2:1 on #F0F7EE ✅ */
+  margin-bottom: var(--space-xs);
+}
+
+.presell-ingredient-box__name {
+  /* inherits h3 from global.css */
+  color: var(--color-brand-green);
+  margin-bottom: var(--space-sm);
+}
+
+.presell-ingredient-box__body {
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* ── CTA wrapper ─────────────────────────────────────────────────────────── */
+.presell-article__cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background-color: var(--color-bg-card);
+  border: 2px solid var(--color-brand-gold-decorative);
+  border-radius: var(--radius-lg);
+  margin-block: var(--space-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.presell-article__cta-wrap--bottom {
+  background-color: var(--color-bg-green-tint);
+  border-color: var(--color-brand-green);
+}
+
+.presell-article__cta-nudge {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  max-width: none;
+}
+
+.presell-article__cta-btn {
+  /* extends .btn .btn--primary from global.css */
+  width: 100%;
+  max-width: 480px;
+  font-size: 1.05rem;
+}
+
+.presell-article__cta-sub {
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+}
+
+/* ── Inline disclaimer ───────────────────────────────────────────────────── */
+.presell-article__disclaimer-inline {
+  /* .supporting-text from global.css applies */
+  color: var(--color-text-muted);
+  margin-top: calc(-1 * var(--space-md));
+}
+
+/* ── Feature list ────────────────────────────────────────────────────────── */
+.presell-article__feature-list {
+  margin-block: var(--space-md);
+  padding-left: 1.5rem;
+}
+
+.presell-article__feature-list li {
+  padding-left: 0.25rem;
+  color: var(--color-text-secondary);
+}
+
+.presell-article__feature-list li::marker {
+  color: var(--color-brand-green);
+}
+
+/* ── Author bio aside ────────────────────────────────────────────────────── */
+.presell-author-bio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  margin-top: var(--space-2xl);
+  box-shadow: var(--shadow-card);
+}
+
+.presell-author-bio__avatar {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-green);
+  color: var(--color-text-on-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.presell-author-bio__name {
+  /* h3 styles from global */
+  margin-bottom: var(--space-xs);
+}
+
+.presell-author-bio__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;   /* prevent grid/flex overflow */
+}
+
+.presell-author-bio__desc {
+  /* .supporting-text styles apply */
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* ── Tablet (768px+) ─────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .presell-article__hero-img {
+    max-height: 480px;
+  }
+
+  .presell-article__meta {
+    flex-wrap: nowrap;
+  }
+
+  .presell-ingredient-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-md);
+    align-items: start;
+  }
+
+  .presell-ingredient-box__label {
+    grid-column: 1 / -1;
+  }
+
+  .presell-ingredient-box__name {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Desktop (1024px+) ───────────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .presell-article__hero-img {
+    max-height: 520px;
+  }
+
+  .presell-article__cta-btn {
+    width: auto;
+    min-width: 380px;
+  }
+}
+
+/* ── High-contrast / forced-colors ──────────────────────────────────────── */
+@media (forced-colors: active) {
+  .presell-ingredient-box,
+  .presell-article__pullquote,
+  .presell-article__cta-wrap {
+    border: 2px solid ButtonText;
+  }
+}

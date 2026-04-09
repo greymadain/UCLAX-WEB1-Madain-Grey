@@ -1,0 +1,142 @@
+.order-bump {
+  border: 3px dashed var(--color-brand-gold-decorative);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  background: var(--color-bg-gold-tint);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.order-bump--selected {
+  border-color: var(--color-brand-green);
+  border-style: solid;
+  background: var(--color-bg-green-tint);
+}
+
+.order-bump__badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--color-brand-gold);
+  color: white;
+  font-size: 0.778rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.875rem;
+}
+
+.order-bump--selected .order-bump__badge {
+  background: var(--color-brand-green);
+}
+
+.order-bump__content {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.order-bump__image-col {
+  flex-shrink: 0;
+}
+
+.order-bump__image-placeholder {
+  width: 72px;
+  height: 72px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.order-bump__text-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-bump__heading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.375rem;
+}
+
+.order-bump__description {
+  font-size: 0.889rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.625rem;
+}
+
+.order-bump__benefits {
+  font-size: 0.889rem;
+  color: var(--color-text-secondary);
+  padding-left: 1.25rem;
+  margin-bottom: 0.875rem;
+}
+
+.order-bump__benefits li {
+  margin-bottom: 0.25rem;
+}
+
+/* ── Checkbox — expanded 44px tap area (WCAG 2.5.8) ───────────────────────── */
+.order-bump__checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.625rem 0; /* Expands tap area to ~44px total */
+  min-height: 44px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.order-bump__checkbox-wrapper:hover {
+  background: rgba(61, 140, 47, 0.06);
+}
+
+.order-bump__checkbox {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  accent-color: var(--color-brand-green);
+  cursor: pointer;
+}
+
+.order-bump__checkbox-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.order-bump__price {
+  font-size: 0.889rem;
+  color: var(--color-text-muted);
+  margin-top: 0.375rem;
+}
+
+.order-bump__price s {
+  color: var(--color-text-muted);
+}
+
+.order-bump__price-sale {
+  font-size: 1.125rem;
+  color: var(--color-brand-green);
+  font-weight: 700;
+}
+
+.order-bump__price-note {
+  color: var(--color-text-muted);
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 480px) {
+  .order-bump__content {
+    flex-direction: column;
+  }
+
+  .order-bump__image-col {
+    align-self: center;
+  }
+}

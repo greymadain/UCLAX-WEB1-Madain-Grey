@@ -1,6 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+// Global CSS is imported in App.jsx
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>Student Name</React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );

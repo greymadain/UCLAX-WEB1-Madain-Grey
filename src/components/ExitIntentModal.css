@@ -1,0 +1,125 @@
+.exit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.exit-modal {
+  position: relative;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modal-in 200ms ease forwards;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exit-modal {
+    animation: none;
+  }
+}
+
+/* ── Close Button ─────────────────────────────────────────────────────────── */
+.exit-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid var(--color-border-light);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.exit-modal__close:hover {
+  background: var(--color-bg-page);
+  border-color: var(--color-border);
+}
+
+/* ── Content ──────────────────────────────────────────────────────────────── */
+.exit-modal__content {
+  text-align: center;
+}
+
+.exit-modal__eyebrow {
+  font-size: 0.889rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-gold);
+  margin-bottom: 0.5rem;
+}
+
+.exit-modal__heading {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: 0.875rem;
+}
+
+.exit-modal__body {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.25rem;
+  max-width: 100%;
+}
+
+.exit-modal__offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--color-bg-gold-tint);
+  border: 2px dashed var(--color-brand-gold-decorative);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.exit-modal__code {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand-gold);
+  letter-spacing: 0.1em;
+  font-family: 'Courier New', monospace;
+}
+
+.exit-modal__discount {
+  font-size: 0.889rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.exit-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exit-modal__decline {
+  color: var(--color-text-muted);
+  font-size: 0.889rem;
+}
