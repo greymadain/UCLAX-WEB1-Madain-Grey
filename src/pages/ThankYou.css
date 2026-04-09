@@ -21,6 +21,7 @@
 
 .ty-hero__heading {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-family: var(--font-display);
   color: var(--esf-charcoal);
   margin-bottom: var(--space-sm);
 }
@@ -39,13 +40,15 @@
   border-radius: var(--radius-lg);
   padding: var(--space-xl) var(--space-lg);
   box-shadow: var(--shadow-card);
+  border: 0.5px solid var(--esf-gray-divider);
   margin-bottom: var(--space-2xl);
 }
 
 .ty-order-summary__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-display);
   margin-bottom: var(--space-lg);
-  border-bottom: 2px solid var(--esf-gold-accent);
+  border-bottom: 1px solid var(--esf-gold-accent);
   padding-bottom: var(--space-sm);
 }
 
@@ -116,6 +119,7 @@
 
 .ty-timeline__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-display);
   text-align: center;
   margin-bottom: var(--space-sm);
 }
@@ -214,6 +218,7 @@
 
 .ty-reviews__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-display);
   text-align: center;
   margin-bottom: var(--space-xl);
 }
@@ -237,6 +242,7 @@
 
 .ty-crosssell__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-display);
   text-align: center;
   margin-bottom: var(--space-xl);
 }
@@ -259,7 +265,7 @@
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow: var(--shadow-card);
-  border: 1px solid var(--esf-gray-divider);
+  border: 0.5px solid var(--esf-gray-divider);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -286,7 +292,7 @@
 .crosssell-card__price {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--esf-green-btn);
+  color: var(--esf-green-dark);
   margin-bottom: 0;
 }
 
@@ -300,7 +306,7 @@
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   box-shadow: var(--shadow-card);
-  border: 1px solid var(--esf-gray-divider);
+  border: 0.5px solid var(--esf-gray-divider);
 }
 
 .amazon-fbt__products {
@@ -372,10 +378,11 @@
   padding: var(--space-xl);
   text-align: center;
   margin-bottom: var(--space-2xl);
-  border: 2px solid var(--esf-green-btn);
+  border: 1.5px solid var(--esf-green-btn);
 }
 
 .ty-referral__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-display);
   margin-bottom: var(--space-md);
 }
