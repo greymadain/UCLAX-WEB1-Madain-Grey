@@ -2,19 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  background: #FEF3C7;            /* Amber tint — warm urgency */
-  border: 2px solid #D97706;      /* Amber border — 3:1 on yellow ✅ */
+  gap: 0.5rem 0.75rem;
+  padding: 10px 14px;
+  background: var(--esf-amber-tint);
+  border: 1px solid var(--esf-amber-border);
   border-radius: var(--radius-md);
   flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
 }
 
 .countdown-timer__label {
   font-size: 0.889rem;
-  font-weight: 600;
-  color: #92400E;                  /* 6.4:1 on amber bg ✅ */
+  font-weight: 500;
+  color: var(--esf-gold-text);
   display: flex;
   align-items: center;
   gap: 0.375rem;
@@ -25,12 +24,12 @@
 }
 
 .countdown-timer__display {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: monospace;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #92400E;                  /* 6.4:1 on amber ✅ */
-  letter-spacing: 0.05em;
-  min-width: 5ch;                  /* Prevents layout shift as digits change */
+  color: var(--esf-gold-text);
+  letter-spacing: 0.1em;
+  min-width: 5ch; /* Prevents layout shift as digits change */
   transition: color var(--transition-fast);
 }
 

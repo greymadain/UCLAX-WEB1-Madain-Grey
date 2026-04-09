@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--esf-gray-divider);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
 .faq-accordion__item {
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--esf-gray-divider);
 }
 
 .faq-accordion__item:last-child {
@@ -28,25 +28,25 @@
   gap: 1rem;
   width: 100%;
   padding: 1.125rem var(--space-lg);
-  background: var(--color-bg-card);
+  background: var(--esf-white);
   border: none;
   cursor: pointer;
   text-align: left;
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
   min-height: 56px; /* Well above 44px WCAG 2.5.8 */
   transition: background-color var(--transition-fast);
 }
 
 .faq-accordion__trigger:hover {
-  background-color: var(--color-bg-page);
+  background-color: var(--esf-cream);
 }
 
 .faq-accordion__trigger--open {
-  background-color: var(--color-bg-green-tint);
-  color: var(--color-brand-green);
+  background-color: var(--esf-green-tint);
+  color: var(--esf-green-dark);
 }
 
 .faq-accordion__question {
@@ -62,23 +62,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-border-light);
+  background: var(--esf-gray-divider);
   border-radius: 50%;
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   line-height: 1;
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .faq-accordion__trigger--open .faq-accordion__icon {
-  background: var(--color-brand-green);
+  background: var(--esf-green-btn);
   color: white;
 }
 
 /* ── Content Panel ───────────────────────────────────────────────────────── */
 .faq-accordion__content {
-  background: var(--color-bg-card);
+  background: var(--esf-white);
 }
 
 .faq-accordion__content--open {
@@ -87,11 +87,11 @@
 
 .faq-accordion__body {
   padding: 0.75rem var(--space-lg) 1.25rem;
-  border-top: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--esf-gray-divider);
 }
 
 .faq-accordion__body p {
   max-width: 65ch;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   margin-bottom: 0;
 }

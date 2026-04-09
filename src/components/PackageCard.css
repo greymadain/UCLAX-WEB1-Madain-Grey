@@ -5,9 +5,10 @@
 }
 
 .package-selector__legend {
+  font-family: var(--font-display);
   font-size: clamp(1.125rem, 2vw, 1.375rem);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-green-dark);
   margin-bottom: var(--space-lg);
   display: block;
   width: 100%;
@@ -35,9 +36,10 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 1.25rem;
-  background: var(--color-bg-card);
-  border: 2px solid var(--color-border-light);
+  background: var(--esf-white);
+  border: 1.5px solid var(--esf-gray-divider);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   cursor: pointer;
   transition:
     border-color var(--transition-fast),
@@ -57,16 +59,15 @@
 }
 
 .package-card:hover {
-  border-color: var(--color-brand-green);
+  border-color: var(--esf-green-btn);
   box-shadow: var(--shadow-card-hover);
 }
 
 /* ── Selected State — uses border + icon + background, NOT color alone (WCAG 1.4.1) ── */
 .package-card--selected {
-  border-color: var(--color-card-selected);
-  border-width: 3px;
-  background-color: var(--color-bg-green-tint);
-  box-shadow: 0 0 0 1px var(--color-card-selected), var(--shadow-card-hover);
+  border: 2.5px solid var(--esf-green-btn);
+  background-color: var(--esf-green-tint);
+  box-shadow: var(--shadow-card);
 }
 
 /* Selected checkmark icon */
@@ -79,7 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-brand-green);
+  background: var(--esf-green-btn);
   color: white;
   border-radius: 50%;
   font-size: 0.875rem;
@@ -96,9 +97,9 @@
 .package-card__badge {
   display: inline-block;
   padding: 0.2rem 0.625rem;
-  background: var(--color-brand-green);
+  background: var(--esf-green-btn);
   color: white;
-  font-size: 0.722rem; /* Small but 13px — readable at size */
+  font-size: 0.722rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   border-radius: var(--radius-full);
@@ -114,14 +115,15 @@
 }
 
 .package-card__count {
+  font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
 }
 
 .package-card__supply {
   font-size: 0.889rem;
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
 }
 
 .package-card__pricing {
@@ -134,13 +136,13 @@
 .package-card__price-highlight {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-brand-green);
+  color: var(--esf-green-dark);
 }
 
 .package-card__price-unit {
   font-size: 0.889rem;
   font-weight: 400;
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
 }
 
 .package-card__total {
@@ -152,20 +154,20 @@
 
 .package-card__original {
   font-size: 0.889rem;
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
 }
 
 .package-card__sale {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
 }
 
 .package-card__savings {
   font-size: 0.889rem;
   font-weight: 700;
-  color: var(--color-brand-green);
-  background: var(--color-bg-green-tint);
+  color: var(--esf-green-dark);
+  background: var(--esf-green-tint);
   padding: 0.1rem 0.4rem;
   border-radius: var(--radius-sm);
 }

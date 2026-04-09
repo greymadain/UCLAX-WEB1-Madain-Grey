@@ -10,10 +10,10 @@
   top: var(--space-md);
   left: var(--space-md);
   z-index: 9999;
-  background: var(--color-bg-card);
-  color: var(--color-brand-green);
+  background: var(--esf-white);
+  color: var(--esf-green-btn);
   padding: var(--space-sm) var(--space-lg);
-  border: 3px solid var(--color-focus-ring);
+  border: 3px solid var(--esf-focus);
   border-radius: var(--radius-md);
   font-weight: 700;
   text-decoration: none;
@@ -28,14 +28,14 @@
 
 /* ── Main wrapper ─────────────────────────────────────────────────────────── */
 .watch-main {
-  background-color: var(--color-bg-page);
+  background-color: var(--esf-cream);
   padding-bottom: var(--space-3xl);
 }
 
 /* ── Hero section ─────────────────────────────────────────────────────────── */
 .watch-hero {
-  background-color: var(--color-bg-card);
-  border-bottom: 1px solid var(--color-border-light);
+  background-color: var(--esf-white);
+  border-bottom: 1px solid var(--esf-gray-divider);
   padding-block: var(--space-xl) var(--space-2xl);
   text-align: center;
 }
@@ -57,8 +57,8 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-lg);
-  background-color: var(--color-bg-gold-tint);
-  border: 1px solid var(--color-brand-gold-decorative);
+  background-color: var(--esf-gold-tint);
+  border: 1px solid var(--esf-gold-accent);
   border-radius: var(--radius-full);
 }
 
@@ -71,7 +71,7 @@
 .watch-social-proof__text {
   font-size: 0.889rem;
   font-weight: 700;
-  color: var(--color-brand-gold);   /* #8A6A1A — 5.2:1 on #FBF5E6 ✅ */
+  color: var(--esf-gold-text);   /* #8A6A1A — 5.2:1 on #FBF5E6 ✅ */
 }
 
 /* ── Hero headline ────────────────────────────────────────────────────────── */
@@ -83,7 +83,7 @@
 
 .watch-hero__subhead {
   font-size: 1rem;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   max-width: 540px;
   text-align: center;
   margin-bottom: 0;
@@ -126,7 +126,7 @@
 }
 
 .watch-play-btn:focus-visible {
-  outline: 3px solid var(--color-focus-ring);
+  outline: 3px solid var(--esf-focus);
   outline-offset: -4px; /* inset focus ring so it's always visible */
 }
 
@@ -137,7 +137,7 @@
   width: 80px;         /* Well above 60px spec minimum */
   height: 80px;
   background-color: rgba(255, 255, 255, 0.92);
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   border-radius: var(--radius-full);
   font-size: 1.75rem;
   line-height: 1;
@@ -194,12 +194,12 @@
   gap: var(--space-sm) var(--space-md);
   margin-top: var(--space-md);
   padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--esf-gray-divider);
 }
 
 .watch-transcript-toggle {
   /* .btn .btn--ghost from global.css */
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   font-weight: 600;
   text-decoration: underline;
   min-height: 44px;
@@ -208,12 +208,12 @@
 }
 
 .watch-transcript-toggle:hover {
-  color: var(--color-brand-green-dark);
+  color: var(--esf-green-btn-hover);
 }
 
 .watch-video-meta__captions {
   /* .supporting-text from global.css */
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -230,22 +230,22 @@
 
 .watch-transcript__body {
   padding: var(--space-lg);
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border-light);
+  background-color: var(--esf-white);
+  border: 1px solid var(--esf-gray-divider);
   border-radius: var(--radius-md);
   margin-top: var(--space-md);
 }
 
 .watch-transcript__body p {
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
 }
 
 /* ── CTA wrapper ─────────────────────────────────────────────────────────── */
 .watch-cta-wrap {
   margin-top: var(--space-xl);
   padding: var(--space-xl);
-  background-color: var(--color-bg-green-tint);
-  border: 2px solid var(--color-brand-green);
+  background-color: var(--esf-green-tint);
+  border: 2px solid var(--esf-green-btn);
   border-radius: var(--radius-lg);
   text-align: center;
   display: flex;
@@ -273,13 +273,13 @@
 
 .watch-cta-wrap--after-testimonials {
   margin-top: var(--space-2xl);
-  background-color: var(--color-bg-card);
+  background-color: var(--esf-white);
 }
 
 .watch-cta-wrap__nudge {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   margin-bottom: 0;
   max-width: none;
 }
@@ -292,7 +292,7 @@
 
 .watch-cta-wrap__sub {
   /* .supporting-text from global.css */
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
   margin-bottom: 0;
 }
 
@@ -305,14 +305,14 @@
 
 .watch-section-sub {
   text-align: center;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   margin-bottom: var(--space-xl);
 }
 
 /* ── Testimonials section ─────────────────────────────────────────────────── */
 .watch-testimonials {
-  background-color: var(--color-bg-card);
-  border-block: 1px solid var(--color-border-light);
+  background-color: var(--esf-white);
+  border-block: 1px solid var(--esf-gray-divider);
 }
 
 .watch-testimonials__list {
@@ -331,7 +331,7 @@
 
 /* ── FAQ section ─────────────────────────────────────────────────────────── */
 .watch-faq {
-  background-color: var(--color-bg-page);
+  background-color: var(--esf-cream);
 }
 
 /* ── Footer / disclaimer ──────────────────────────────────────────────────── */

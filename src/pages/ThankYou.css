@@ -1,5 +1,5 @@
 .ty-page {
-  background: var(--color-bg-page);
+  background: var(--esf-cream);
   min-height: 100vh;
 }
 
@@ -21,13 +21,13 @@
 
 .ty-hero__heading {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
   margin-bottom: var(--space-sm);
 }
 
 .ty-hero__sub {
   font-size: 1rem;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   max-width: 55ch;
   margin-inline: auto;
   margin-bottom: 0;
@@ -35,7 +35,7 @@
 
 /* ── Order Summary ───────────────────────────────────────────────────────── */
 .ty-order-summary {
-  background: var(--color-bg-card);
+  background: var(--esf-white);
   border-radius: var(--radius-lg);
   padding: var(--space-xl) var(--space-lg);
   box-shadow: var(--shadow-card);
@@ -45,7 +45,7 @@
 .ty-order-summary__heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   margin-bottom: var(--space-lg);
-  border-bottom: 2px solid var(--color-brand-gold-decorative);
+  border-bottom: 2px solid var(--esf-gold-accent);
   padding-bottom: var(--space-sm);
 }
 
@@ -58,7 +58,7 @@
 .ty-order-table th,
 .ty-order-table td {
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--esf-gray-divider);
   text-align: left;
 }
 
@@ -71,18 +71,18 @@
 .ty-order-table thead th {
   font-size: 0.889rem;
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .ty-order-table__free {
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   font-weight: 700;
 }
 
 .ty-order-table__total {
-  background: var(--color-bg-page);
+  background: var(--esf-cream);
 }
 
 .ty-order-table__total th,
@@ -91,11 +91,11 @@
   padding-top: 1rem;
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
 }
 
 .ty-order-table__total .ty-order-table__price {
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   font-size: 1.375rem;
 }
 
@@ -105,7 +105,7 @@
   gap: 0.5rem;
   margin-top: var(--space-lg);
   font-size: 0.944rem;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   margin-bottom: 0;
 }
 
@@ -122,7 +122,7 @@
 
 .ty-timeline__intro {
   text-align: center;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   max-width: 55ch;
   margin-inline: auto;
   margin-bottom: var(--space-xl);
@@ -146,7 +146,7 @@
   top: 30px;
   bottom: 30px;
   width: 2px;
-  background: var(--color-brand-gold-decorative);
+  background: var(--esf-gold-accent);
 }
 
 .ty-timeline__item {
@@ -166,7 +166,7 @@
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  background: var(--color-brand-green);
+  background: var(--esf-green-btn);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -176,7 +176,7 @@
   font-size: 1.125rem;
   position: relative;
   z-index: 1;
-  border: 3px solid var(--color-bg-page);
+  border: 3px solid var(--esf-cream);
 }
 
 .ty-timeline__content {
@@ -190,20 +190,20 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-brand-gold);
+  color: var(--esf-gold-text);
   margin-bottom: 0.25rem;
 }
 
 .ty-timeline__title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
   margin-bottom: 0.375rem;
 }
 
 .ty-timeline__detail {
   font-size: 0.944rem;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   margin-bottom: 0;
 }
 
@@ -255,11 +255,11 @@
 
 /* Static cross-sell card */
 .crosssell-card {
-  background: var(--color-bg-card);
+  background: var(--esf-white);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow: var(--shadow-card);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--esf-gray-divider);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -273,12 +273,12 @@
 .crosssell-card__name {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
 }
 
 .crosssell-card__desc {
   font-size: 0.889rem;
-  color: var(--color-text-secondary);
+  color: var(--esf-gray-body);
   flex: 1;
   margin-bottom: 0;
 }
@@ -286,7 +286,7 @@
 .crosssell-card__price {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   margin-bottom: 0;
 }
 
@@ -296,11 +296,11 @@
 
 /* Amazon FBT */
 .amazon-fbt {
-  background: var(--color-bg-card);
+  background: var(--esf-white);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   box-shadow: var(--shadow-card);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--esf-gray-divider);
 }
 
 .amazon-fbt__products {
@@ -315,7 +315,7 @@
 .amazon-fbt__product {
   text-align: center;
   padding: var(--space-md);
-  background: var(--color-bg-page);
+  background: var(--esf-cream);
   border-radius: var(--radius-md);
   min-width: 120px;
 }
@@ -329,21 +329,21 @@
 .amazon-fbt__name {
   font-size: 0.889rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
   margin-bottom: 0.25rem;
 }
 
 .amazon-fbt__price {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-brand-green);
+  color: var(--esf-green-btn);
   margin-bottom: 0;
 }
 
 .amazon-fbt__plus {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
 }
 
 .amazon-fbt__total {
@@ -356,23 +356,23 @@
 
 .amazon-fbt__total p {
   font-size: 1.125rem;
-  color: var(--color-text-primary);
+  color: var(--esf-charcoal);
   margin-bottom: 0;
 }
 
 .amazon-fbt__original {
-  color: var(--color-text-muted);
+  color: var(--esf-gray-muted);
   font-weight: 400;
 }
 
 /* ── Referral ────────────────────────────────────────────────────────────── */
 .ty-referral {
-  background: var(--color-bg-green-tint);
+  background: var(--esf-green-tint);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   text-align: center;
   margin-bottom: var(--space-2xl);
-  border: 2px solid var(--color-brand-green);
+  border: 2px solid var(--esf-green-btn);
 }
 
 .ty-referral__heading {
